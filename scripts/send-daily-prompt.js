@@ -1,9 +1,10 @@
 const https = require("node:https");
-const { prompts } = require("../prompts-data.js");
+const { getPromptForDate } = require("../prompts-data.js");
 
 const APP_NAME = "Veloura";
 const DEFAULT_TIME = "20:30";
 const DEFAULT_TIMEZONE = "America/New_York";
+const SEND_WINDOW_MINUTES = 20;
 
 function getConfig() {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -44,11 +45,6 @@ function getTimeParts(date, timezone) {
   );
 }
 
-function getPromptForDate(dateString) {
-  const base = Number(dateString.replaceAll("-", ""));
-  return prompts[base % prompts.length];
-}
-
 function shouldSendNow(nowParts, scheduledTime) {
   const [hour, minute] = scheduledTime.split(":");
   if (nowParts.hour !== hour) {
@@ -57,7 +53,7 @@ function shouldSendNow(nowParts, scheduledTime) {
 
   const currentMinute = Number(nowParts.minute);
   const scheduledMinute = Number(minute);
-  return currentMinute >= scheduledMinute && currentMinute < scheduledMinute + 10;
+  return currentMinute >= scheduledMinute && currentMinute < scheduledMinute + SEND_WINDOW_MINUTES;
 }
 
 function requestTelegram(path, body) {
@@ -116,7 +112,7 @@ async function sendPrompt() {
     `*${prompt.title}*`,
     prompt.text,
     "",
-    `Tags: ${prompt.tags.join(" · ")}`,
+    `Tags: ${prompt.tags.join(", ")}`,
   ].join("\n");
 
   await requestTelegram(

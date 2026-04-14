@@ -1,6 +1,6 @@
 # Veloura
 
-Veloura is a minimal luxury journaling app built for one deliberate reflection each day.
+Veloura is a minimal daily prompt delivery app. Its job is simple: send one thoughtful prompt to your phone each day so you can write in your own journal offline.
 
 ## Brand
 
@@ -9,9 +9,16 @@ Veloura is a minimal luxury journaling app built for one deliberate reflection e
 - Tone: calm, intimate, aspirational
 - Signature color: muted rose `#b66578`
 
+## What the app does
+
+- Stores a rotating library of prompts.
+- Chooses the prompt of the day deterministically based on the date.
+- Sends that prompt to Telegram on a schedule through GitHub Actions.
+- Offers a lightweight local page for previewing the prompt library and setup steps.
+
 ## Run locally
 
-Serve the folder with any static server. Example:
+Serve the folder locally to preview the prompt library and setup page:
 
 ```powershell
 python -m http.server 4173
@@ -21,7 +28,7 @@ Then open `http://localhost:4173`.
 
 ## Daily prompt to your phone
 
-This repo now includes a scheduled Telegram delivery workflow so the same daily prompt can reach your phone at a fixed time each day.
+Telegram is the reliable phone delivery path in this repo.
 
 ### 1. Create a Telegram bot
 
@@ -56,7 +63,7 @@ The scheduled delivery runs through GitHub Actions, so the repository needs to b
 - `DAILY_PROMPT_TIMEZONE`
   Example: `America/New_York`
 
-The workflow runs every 10 minutes and sends when the local time in your chosen timezone falls within the scheduled delivery window for `DAILY_PROMPT_TIME`.
+The workflow runs twice per day in UTC to cover daylight saving and standard time, and sends when the local time in your chosen timezone falls within the scheduled delivery window for `DAILY_PROMPT_TIME`.
 
 ### 6. Test it
 
@@ -73,5 +80,6 @@ node scripts/send-daily-prompt.js
 
 ## Notes
 
-- Telegram delivery is the reliable phone path in this repo.
-- Browser notifications still work inside the app, but they are not enough on their own if the site is closed.
+- The local web page is only a preview and setup surface.
+- The product is the daily delivery workflow, not in-browser journaling.
+- Prompt selection is shared between the browser preview and Telegram sender.
