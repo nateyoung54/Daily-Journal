@@ -2,8 +2,8 @@ name: Veloura Daily Prompt
 
 on:
   schedule:
-    - cron: "5 20 * * *"
-    - cron: "5 21 * * *"
+    - cron: "35 20 * * *"
+    - cron: "35 21 * * *"
   workflow_dispatch:
 
 jobs:

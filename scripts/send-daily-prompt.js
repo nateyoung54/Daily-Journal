@@ -2,7 +2,7 @@ const https = require("node:https");
 const { getPromptForDate } = require("../prompts-data.js");
 
 const APP_NAME = "Veloura";
-const DEFAULT_TIME = "20:30";
+const DEFAULT_TIME = "16:30";
 const DEFAULT_TIMEZONE = "America/New_York";
 const SEND_WINDOW_MINUTES = 20;
 

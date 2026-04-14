@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Veloura is a daily prompt for thoughtful self-reflection."
+      content="Veloura delivers one thoughtful prompt to your phone each day so you can write offline."
     />
     <title>Veloura</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -17,54 +17,90 @@
     <div class="ambient ambient-right"></div>
 
     <main class="shell">
-      <section class="panel prompt-stage">
-        <header class="stage-top">
+      <section class="panel app-stage">
+        <header class="hero">
           <div class="brand-lockup">
             <div class="brand-mark" aria-hidden="true">V</div>
             <div>
               <p class="brand-name">Veloura</p>
-              <p class="brand-subtitle">Daily prompt</p>
+              <p class="brand-subtitle">Daily prompt delivery</p>
             </div>
           </div>
 
-          <div class="meta-cluster">
-            <div class="meta-item">
-              <span class="meta-label">Date</span>
-              <strong id="todayLabel">April 13, 2026</strong>
-            </div>
-
-            <label class="meta-item cadence-item" for="reminderTime">
-              <span class="meta-label">Send daily</span>
-              <div class="cadence-controls">
-                <input id="reminderTime" type="time" value="20:30" />
-                <button class="ghost-button" id="reminderButton" type="button">
-                  Set
-                </button>
-              </div>
-            </label>
+          <div class="hero-copy">
+            <p class="eyebrow">Write offline, receive one prompt a day</p>
+            <h1>Built to text your prompt, not trap you in another app.</h1>
+            <p class="hero-text">
+              Veloura sends a single reflective prompt to your phone each day.
+              Read it, sit with it, and write wherever you already journal.
+            </p>
           </div>
         </header>
 
-        <div class="prompt-frame">
-          <p class="prompt-title" id="promptTitle">Values and alignment</p>
-          <blockquote id="dailyPrompt" class="daily-prompt"></blockquote>
-          <div class="prompt-tags" id="promptTags"></div>
-        </div>
+        <section class="content-grid">
+          <article class="surface prompt-surface">
+            <div class="surface-top">
+              <div>
+                <p class="meta-label">Today's prompt</p>
+                <strong id="todayLabel">April 14, 2026</strong>
+              </div>
+              <div class="meta-pill">
+                <span id="promptCount">73 prompts</span>
+              </div>
+            </div>
 
-        <footer class="stage-bottom">
-          <p class="helper-text" id="reminderStatus"></p>
-          <div class="prompt-actions">
-            <button class="ghost-button" id="shufflePromptButton" type="button">
-              Next prompt
-            </button>
-            <button class="primary-button" id="copyPromptButton" type="button">
-              Copy prompt
-            </button>
-          </div>
-        </footer>
+            <div class="prompt-frame">
+              <p class="prompt-title" id="promptTitle">State of mind</p>
+              <blockquote id="dailyPrompt" class="daily-prompt"></blockquote>
+              <div class="prompt-tags" id="promptTags"></div>
+            </div>
+
+            <footer class="surface-bottom">
+              <p class="helper-text" id="statusMessage">
+                Telegram is the reliable phone delivery path in this repo.
+              </p>
+              <div class="prompt-actions">
+                <button class="ghost-button" id="shufflePromptButton" type="button">
+                  Preview another
+                </button>
+                <button class="primary-button" id="copyPromptButton" type="button">
+                  Copy prompt
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <aside class="surface setup-surface">
+            <div class="surface-top">
+              <div>
+                <p class="meta-label">Delivery setup</p>
+                <strong>Telegram + GitHub Actions</strong>
+              </div>
+            </div>
+
+            <ol class="setup-list">
+              <li>Message <code>@BotFather</code> in Telegram and create a bot.</li>
+              <li>Send your bot one message, then open the Telegram <code>getUpdates</code> URL to find your <code>chat.id</code>.</li>
+              <li>Add GitHub secrets named <code>TELEGRAM_BOT_TOKEN</code> and <code>TELEGRAM_CHAT_ID</code>.</li>
+              <li>Add GitHub variables named <code>DAILY_PROMPT_TIME</code> and <code>DAILY_PROMPT_TIMEZONE</code>.</li>
+              <li>Run the <code>Veloura Daily Prompt</code> workflow manually once to test delivery.</li>
+            </ol>
+
+            <div class="callout">
+              <p class="meta-label">Local test</p>
+              <pre><code>$env:TELEGRAM_BOT_TOKEN="your-token"
+$env:TELEGRAM_CHAT_ID="your-chat-id"
+$env:DAILY_PROMPT_TIME="16:30"
+$env:DAILY_PROMPT_TIMEZONE="America/New_York"
+$env:FORCE_SEND="true"
+node scripts/send-daily-prompt.js</code></pre>
+            </div>
+          </aside>
+        </section>
       </section>
     </main>
 
+    <script src="prompts-data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

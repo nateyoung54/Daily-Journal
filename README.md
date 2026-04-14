@@ -59,7 +59,7 @@ The scheduled delivery runs through GitHub Actions, so the repository needs to b
 ### 5. Add GitHub variables
 
 - `DAILY_PROMPT_TIME`
-  Example: `20:30`
+  Example: `16:30`
 - `DAILY_PROMPT_TIMEZONE`
   Example: `America/New_York`
 
@@ -72,7 +72,7 @@ Run the `Veloura Daily Prompt` workflow manually from the Actions tab, or test l
 ```powershell
 $env:TELEGRAM_BOT_TOKEN="your-token"
 $env:TELEGRAM_CHAT_ID="your-chat-id"
-$env:DAILY_PROMPT_TIME="20:30"
+$env:DAILY_PROMPT_TIME="16:30"
 $env:DAILY_PROMPT_TIMEZONE="America/New_York"
 $env:FORCE_SEND="true"
 node scripts/send-daily-prompt.js
