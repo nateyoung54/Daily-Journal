@@ -25,4 +25,5 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           DAILY_PROMPT_TIME: ${{ vars.DAILY_PROMPT_TIME }}
           DAILY_PROMPT_TIMEZONE: ${{ vars.DAILY_PROMPT_TIMEZONE }}
+          FORCE_SEND: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
         run: node scripts/send-daily-prompt.js
