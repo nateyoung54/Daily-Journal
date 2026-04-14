@@ -4,7 +4,7 @@ const { getPromptForDate } = require("../prompts-data.js");
 const APP_NAME = "Veloura";
 const DEFAULT_TIME = "16:30";
 const DEFAULT_TIMEZONE = "America/New_York";
-const SEND_WINDOW_MINUTES = 20;
+const SEND_WINDOW_MINUTES = 45;
 
 function getConfig() {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
