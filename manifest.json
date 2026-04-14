@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#f8f2ef",
   "theme_color": "#b66578",
-  "description": "A refined daily journaling ritual for thoughtful self-reflection.",
+  "description": "A daily prompt delivery app for thoughtful offline journaling.",
   "icons": [
     {
       "src": "favicon.svg",
