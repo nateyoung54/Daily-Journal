@@ -1,0 +1,28 @@
+name: Veloura Daily Prompt
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  send-prompt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Send Telegram prompt
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DAILY_PROMPT_TIME: ${{ vars.DAILY_PROMPT_TIME }}
+          DAILY_PROMPT_TIMEZONE: ${{ vars.DAILY_PROMPT_TIMEZONE }}
+        run: node scripts/send-daily-prompt.js

@@ -1,0 +1,11 @@
+{
+  "name": "veloura",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A luxury daily journaling app with scheduled phone prompt delivery.",
+  "scripts": {
+    "check": "node --check script.js && node --check prompts-data.js && node --check scripts/send-daily-prompt.js",
+    "start": "node server.js",
+    "send:prompt": "node scripts/send-daily-prompt.js"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Veloura",
+  "short_name": "Veloura",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f2ef",
+  "theme_color": "#b66578",
+  "description": "A refined daily journaling ritual for thoughtful self-reflection.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
