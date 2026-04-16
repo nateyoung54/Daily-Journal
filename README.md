@@ -63,7 +63,7 @@ The scheduled delivery runs through GitHub Actions, so the repository needs to b
 - `DAILY_PROMPT_TIMEZONE`
   Example: `America/New_York`
 
-The workflow runs twice per day in UTC to cover daylight saving and standard time, and sends when the local time in your chosen timezone falls within the scheduled delivery window for `DAILY_PROMPT_TIME`.
+The workflow runs every 15 minutes in GitHub Actions. The sender keeps a tiny state file in the repo and sends once per local day after `DAILY_PROMPT_TIME`, so late runners catch up instead of missing the day.
 
 ### 6. Test it
 
@@ -74,6 +74,7 @@ $env:TELEGRAM_BOT_TOKEN="your-token"
 $env:TELEGRAM_CHAT_ID="your-chat-id"
 $env:DAILY_PROMPT_TIME="16:30"
 $env:DAILY_PROMPT_TIMEZONE="America/New_York"
+$env:PROMPT_STATE_FILE=".github/daily-prompt-state.json"
 $env:FORCE_SEND="true"
 node scripts/send-daily-prompt.js
 ```
@@ -83,3 +84,4 @@ node scripts/send-daily-prompt.js
 - The local web page is only a preview and setup surface.
 - The product is the daily delivery workflow, not in-browser journaling.
 - Prompt selection is shared between the browser preview and Telegram sender.
+- Delivery state is stored in `.github/daily-prompt-state.json` and committed back by the workflow after a successful send.
