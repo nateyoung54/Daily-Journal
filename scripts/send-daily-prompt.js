@@ -137,8 +137,6 @@ async function sendPrompt() {
     "",
     `*${prompt.title}*`,
     prompt.text,
-    "",
-    `Tags: ${prompt.tags.join(", ")}`,
   ].join("\n");
 
   await requestTelegram(
