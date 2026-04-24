@@ -38,7 +38,7 @@ function getTimeParts(date, timezone) {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false,
+    hourCycle: "h23",
   });
 
   return Object.fromEntries(
